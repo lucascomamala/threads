@@ -21,7 +21,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+
           <Topbar />
+          
           <main>
             <LeftSidebar />
 
@@ -33,7 +35,9 @@ export default function RootLayout({
 
             <RightSidebar />
           </main>
+
           <Bottombar />
+
         </body>
       </html>
     </ClerkProvider>

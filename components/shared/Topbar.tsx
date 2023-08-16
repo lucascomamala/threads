@@ -1,5 +1,5 @@
 function Topbar() {
-  return <h1>Bottombar</h1>
+  return <h1>Topbar</h1>
 }
 
 export default Topbar
