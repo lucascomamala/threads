@@ -1,24 +1,24 @@
 "use client"
 
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from '../ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from "zod"
+import { useUploadThing } from '@/lib/uploadthing'
 
 import { UserValidation } from '@/lib/validations/user'
+import { isBase64Image } from '@/lib/utils'
 
 interface Props {
   user: {
@@ -35,6 +35,9 @@ interface Props {
 
 const AccountProfile = ({ user, btnTitle }: Props) => {
 
+  const [files, setfiles] = useState<File[]>([])
+  const { startUpload } = useUploadThing('media')
+
   const form = useForm({
     resolver: zodResolver(UserValidation),
     defaultValues: {
@@ -45,14 +48,40 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     },
   })
 
-  const handleImage = (e: ChangeEvent, fieldChange: (value: string) => void) => {
+  const handleImage = (e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) => {
     e.preventDefault()
+
+    const fileReader = new FileReader()
+
+    if(e.target.files?.length) {
+      const file = e.target.files[0]
+      setfiles(Array.from(e.target.files))
+
+      if(!file.type.includes('image')) return
+
+      fileReader.onload = async (e) => {
+        const imageDataURL = e.target?.result?.toString() || ''
+        fieldChange(imageDataURL)
+      }
+      
+      fileReader.readAsDataURL(file)
+    }
   }
 
-  function onSubmit(values: z.infer<typeof UserValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+    const blob = values.profile_photo
+
+    const hasImageChanged = isBase64Image(blob)
+
+    if(hasImageChanged) {
+      const imgRes = await startUpload(files)
+
+      if(imgRes && imgRes[0].url) {
+        values.profile_photo = imgRes[0].url
+      }
+    }
+
+    // TODO: Update user profile
   }
 
   return (
