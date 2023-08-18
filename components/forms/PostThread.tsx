@@ -16,8 +16,7 @@ import { Textarea } from '../ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { ThreadValidation } from '@/lib/validations/thread'
-
-// import { updateUser } from '@/lib/actions/user.actions'
+import { createThread } from "@/lib/actions/thread.actions"
 
 interface Props {
   user: {
@@ -45,7 +44,15 @@ function PostThread({ userId }: { userId: string }) {
     },
   })
 
-  const onSubmit = async () => {
+  const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    await createThread({ 
+      text: values.thread,
+      author: userId,
+      communityId: null,
+      path: pathname,
+    })
+
+    router.push('/')
   }
   
   return (
