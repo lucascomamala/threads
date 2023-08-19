@@ -47,7 +47,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="comment-form ml-16"
+        className="comment-form"
       >
         <FormField
           control={form.control}
