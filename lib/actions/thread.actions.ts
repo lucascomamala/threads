@@ -90,3 +90,28 @@ export async function fetchThreadById(id: string) {
   }
   
 }
+
+export async function addCommentToThread(threadId: string, commentText: string, userId: string, path: string) {
+  try {
+    connectToDB()
+
+    const originalThread = await Thread.findById(threadId)
+    if (!originalThread) throw new Error("Thread not found")
+
+    const commentThread = await Thread.create({
+      text: commentText,
+      author: userId,
+      parent: originalThread._id,
+    })
+    
+    const savedCommentThread = await commentThread.save()
+    originalThread.children.push(savedCommentThread._id)
+    await originalThread.save()
+
+    revalidatePath(path)
+  }
+  catch (err: any) {
+    throw new Error(`Failed to create comment: ${err.message}`)
+  }
+
+}
