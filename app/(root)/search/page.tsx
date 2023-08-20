@@ -25,7 +25,7 @@ const Page = async () => {
 
   return (
     <section>
-      <h1>Search</h1>
+      <h1 className="head-text text-left">Search</h1>
 
       {/* Search Bar */}
 

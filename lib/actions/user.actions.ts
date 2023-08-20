@@ -147,7 +147,7 @@ export async function getActivity(userId: string) {
     // find all the child thread ids (replies) from the children field
     const childThreadIds = threads.reduce((acc, thread) => {
       return acc.concat(thread.children)
-    })
+    }, [])
 
     const replies = await Thread
       .find({ 
@@ -159,6 +159,8 @@ export async function getActivity(userId: string) {
         model: User,
         select: 'name image _id'
       })
+
+      console.log(replies)
 
     return replies
     
