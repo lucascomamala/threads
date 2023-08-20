@@ -8,7 +8,7 @@ export default async function Home() {
   const user = await currentUser()
   const result = await fetchThreads(1, 30)
   
-  console.log(result)
+  // console.log(result)
 
   return (
     <>
