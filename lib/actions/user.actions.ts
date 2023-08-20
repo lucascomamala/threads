@@ -75,7 +75,7 @@ export async function fetchUserPosts(userId: string) {
           path: 'children',
           model: Thread,
           populate: {
-            path: 'Author',
+            path: 'author',
             model: User,
             select: 'name image id'
           }
