@@ -20,19 +20,10 @@ import { ThreadValidation } from '@/lib/validations/thread'
 import { createThread } from "@/lib/actions/thread.actions"
 
 interface Props {
-  user: {
-    id: string
-    objectId: string
-    username: string
-    name: string
-    bio: string
-    image: string
-  }
-
-  btnTitle: string
+  userId: string;
 }
-  
-function PostThread({ userId }: { userId: string }) {
+
+function PostThread({ userId }: Props) {
 
   const router = useRouter()
   const pathname = usePathname()
@@ -51,7 +42,7 @@ function PostThread({ userId }: { userId: string }) {
     await createThread({ 
       text: values.thread,
       author: userId,
-      communityId: organization?.id || null,
+      communityId: organization ? organization.id : null,
       path: pathname,
     })
 
