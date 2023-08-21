@@ -141,7 +141,7 @@ function ThreadCard({
             <p>
             {formatDateString(createdAt)}
             </p>{" "}
-            { community && (
+            { community && community !== undefined && (
               <Link
                 href={`/communities/${community.id}`}
                 className="flex flex-row"
