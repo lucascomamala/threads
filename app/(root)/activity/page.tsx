@@ -23,7 +23,6 @@ const Page = async () => {
         {activity.length > 0 ? (
           <>
             {activity.map((act) => {
-              console.log(act)
               return (
               <Link
                 key={act._id}
