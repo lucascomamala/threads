@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+![y](https://github.com/lucascomamala/y/assets/10102977/6bfd970e-2c03-435e-bcc9-e3b32472a565)
 
-First, run the development server:
+# 🇾
+
+Y is a social media application that lets you quickly share short thoughts with your friends and the rest of the world. Built with Nextjs and TailWind CSS, utilizing MongoDB and Clerk for a powerful backend. Y is a full-stack application that allows users to create an account, post, and comment on posts as well as create and join different communities.
+
+## 💡 Live Build
+
+[Y](https://y-blond-kappa.vercel.app/)
+
+## 🛠️ Installation
+
+Use the package manager [npm](https://www.npmjs.com/) to install ReactTube.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone git@github.com:lucascomamala/y.git
+cd y
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🖥️ Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the project locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run start
+```
 
-## Learn More
+To build the project:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤝 Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Contributions, issues, and feature requests are welcome!
 
-## Deploy on Vercel
+Feel free to check the [issues page](../../issues/).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you like this project give this repo a star ⭐ and reach out on our social media, and we will be happy to know about it! 😃
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📝 License
+
+This project is [MIT](./LICENSE) licensed.
